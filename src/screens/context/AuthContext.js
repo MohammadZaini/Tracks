@@ -1,5 +1,5 @@
 import createDataContext from "./createDataContext";
-import tracker from "../api/tracker";
+import trackerApi from "../api/tracker";
 
 const authReducer = (state, action) => {
     switch (action.type) {
@@ -11,19 +11,19 @@ const authReducer = (state, action) => {
     };
 };
 
-const signup = (dispatch) => {
+const signup = dispatch => {
     return async ({email, password}) => {
         //make API request to sign up with that email and password
 
         try {
-            const response = await tracker.post('/signup',{email, password})
+            const response = await trackerApi.post('/signup',{email, password})
             console.log(response.data)
+
         } catch(error) {
+            console.log(response.data)
             dispatch({type: 'add_error', payload:'Something went wrong with sign up'})
 
         };
-
-
         // If we sign up, modify our state, and say that we are authenticated
 
         // If signing up fails, we probably need to reflect an error message somewhere

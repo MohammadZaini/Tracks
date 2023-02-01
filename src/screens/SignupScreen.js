@@ -7,10 +7,8 @@ import { Context as AuthContext } from "./context/AuthContext";
 
 const SignupScreen = ({navigation}) => {
     const {state, signup} = useContext(AuthContext)
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
 
     return (
     <View style={styles.container}>   
@@ -35,6 +33,7 @@ const SignupScreen = ({navigation}) => {
             secureTextEntry
             />
         <Spacer>
+            {state.errorMessage ? <Text style={styles.errorMessage} >{state.errorMessage}</Text> : null }
             <Button 
                 title="Sign Up" 
                 onPress={() => signup({email,password})}
@@ -55,6 +54,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         marginBottom: 200,
+    },
+    errorMessage: {
+        fontSize: 16,
+        color: 'red',
+        marginLeft: 15,
+        marginTop: 15,
     }
 });
 
