@@ -1,44 +1,26 @@
-import React,{useState, useContext} from "react";
-import {View,StyleSheet } from 'react-native';
-import {Text, Input, Button} from 'react-native-elements'
-import { set } from "react-native-reanimated";
-import Spacer from "./components/Spacer";
+import React, { useContext } from "react";
+import { View, StyleSheet } from "react-native";
 import { Context as AuthContext } from "./context/AuthContext";
+import Authform from "./components/AuthForm";
+import NavLink from "./components/NavLink";
 
 const SignupScreen = ({navigation}) => {
     const {state, signup} = useContext(AuthContext)
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+
 
     return (
-    <View style={styles.container}>   
-        <Spacer>
-            <Text h3>Sign up for tracker</Text>
-        </Spacer>
-        <Input 
-            label="Email" 
-            value={email} 
-            onChangeText={ newEmail => setEmail(newEmail)}
-            autoCapitalize= 'none'
-            autoCorrect= {false}
-            /> 
-    
-        <Spacer/>
-        <Input 
-            label="Password" 
-            value={password} 
-            onChangeText={ newPassword => setPassword(newPassword)}
-            autoCapitalize= 'none'
-            autoCorrect= {false}
-            secureTextEntry
-            />
-        <Spacer>
-            {state.errorMessage ? <Text style={styles.errorMessage} >{state.errorMessage}</Text> : null }
-            <Button 
-                title="Sign Up" 
-                onPress={() => signup({email,password})}
-                />
-        </Spacer>
+    <View style={styles.container}>    
+        <Authform
+            headerText="Sign Up for tacker"
+            errorMessage= {state.errorMessage}
+            submitButtonText="Sign Up"
+            onSubmit={signup} 
+            // Is equivalent to ===> onSubmit={({email, password}) => signup(email,password)}
+        />
+        <NavLink 
+            text="Already have an account? Sign in instead"
+            routeName="Sginin"
+        />
     </View>
     );
 };
@@ -53,13 +35,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        marginBottom: 200,
-    },
-    errorMessage: {
-        fontSize: 16,
-        color: 'red',
-        marginLeft: 15,
-        marginTop: 15,
+        marginBottom: 250,
     }
 });
 
