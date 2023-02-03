@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 import {Text, Button, Input} from 'react-native-elements';
 import Spacer from "./Spacer";
 
-const Authform = ({headerText, errorMessage, onSubmit, submitButtonText}) => {
+const Authform = ({headerText, errorMessage, submitButtonText,  onSubmit }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 

@@ -1,15 +1,18 @@
 import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
+import { NavigationEvents } from "react-navigation";
 import { Context as AuthContext } from "./context/AuthContext";
 import Authform from "./components/AuthForm";
 import NavLink from "./components/NavLink";
 
 const SignupScreen = ({navigation}) => {
-    const {state, signup} = useContext(AuthContext)
-
+    const {state, signup, clearErrorMessage} = useContext(AuthContext)
 
     return (
     <View style={styles.container}>    
+        <NavigationEvents
+            onWillFocus={clearErrorMessage}
+        />
         <Authform
             headerText="Sign Up for tacker"
             errorMessage= {state.errorMessage}
@@ -19,7 +22,7 @@ const SignupScreen = ({navigation}) => {
         />
         <NavLink 
             text="Already have an account? Sign in instead"
-            routeName="Sginin"
+            routeName="Signin"
         />
     </View>
     );
