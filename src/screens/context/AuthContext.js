@@ -69,7 +69,6 @@ const signin = (dispatch) => async ({ email, password }) => {
 
             navigate('TrackList')
 
-
         } catch(err) {
             dispatch({
                 type: 'add_error',

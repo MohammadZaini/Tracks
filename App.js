@@ -11,6 +11,7 @@ import TrackDetailScreen from "./src/screens/TrackDetailScreen";
 import { Provider as AuthProvider } from "./src/screens/context/AuthContext";
 import { setNavigator } from "./src/navigationRef";
 import ResloveAuthScreen from "./src/screens/ResloveAuthScreen";
+import { Provider as LocationProvider } from "./src/screens/context/LocationContext";
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResloveAuthScreen,
@@ -34,8 +35,10 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
-    <AuthProvider>
-      <App ref={(navigator) => {setNavigator(navigator)}} />
-    </AuthProvider>
+    <LocationProvider>
+      <AuthProvider>
+        <App ref={(navigator) => {setNavigator(navigator)}} />
+      </AuthProvider>
+    </LocationProvider>
   );
 }
