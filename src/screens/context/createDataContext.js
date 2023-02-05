@@ -2,7 +2,7 @@ import React,{useReducer} from "react";
 import { exp } from "react-native-reanimated";
 
 
-export default (reducer,actions , defaultValue) => {
+export default (reducer, actions , defaultValue) => {
     const Context =  React.createContext()
 
     const Provider = ({children}) => {
