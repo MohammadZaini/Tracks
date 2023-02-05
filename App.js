@@ -13,6 +13,18 @@ import { setNavigator } from "./src/navigationRef";
 import ResloveAuthScreen from "./src/screens/ResloveAuthScreen";
 import { Provider as LocationProvider } from "./src/screens/context/LocationContext";
 import { Provider as TrackProvider } from "./src/screens/context/TrackContext";
+import {FontAwesome} from '@expo/vector-icons'
+
+const trackListFlow = createStackNavigator({
+  TrackList: TrackListScreen,
+  TrackDetail: TrackDetailScreen,
+});
+
+trackListFlow.navigationOptions = () => {
+  return {
+      tabBarIcon: <FontAwesome name='th-list' size={20} />
+  };
+};
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResloveAuthScreen,
@@ -22,11 +34,7 @@ const switchNavigator = createSwitchNavigator({
   }),
 
   mainFlow: createMaterialBottomTabNavigator({
-    TrackListFlow: createStackNavigator({
-      TrackList: TrackListScreen,
-      TrackDetail: TrackDetailScreen,
-    }),
-
+    trackListFlow,
     TrackCreate: TrackCreateScreen,
     Account: AccountScreen,
   })

@@ -3,19 +3,19 @@ import { Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { NavigationEvents } from "react-navigation";
 import { ListItem } from "react-native-elements";
 import { Context as TrackContext } from "./context/TrackContext";
-
+import {FontAwesome} from '@expo/vector-icons';
 const TrackListScreen = ({navigation}) => {
     const { state, fetchTracks } = useContext(TrackContext);
     console.log(state);
     return <>
     <NavigationEvents onWillFocus={fetchTracks} />
-        <Text>Track List Screen</Text>
         <FlatList
         data={state}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => {
         return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() =>
+                navigation.navigate('TrackDetail', { _id: item._id})} >
             <ListItem>
                 <ListItem.Content>
                 <ListItem.Title>{item.name}</ListItem.Title>
@@ -32,23 +32,4 @@ const TrackListScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({});
 
-export default TrackListScreen;
-
-/*
-<FlatList
-        data={state}
-        keyExtractor={(item) => item._id}
-        renderItem={({ item }) => {
-        return (
-            <TouchableOpacity>
-            <ListItem>
-                <ListItem.Content>
-                <ListItem.Title>{item.name}</ListItem.Title>
-                </ListItem.Content>
-                <ListItem.Chevron />
-            </ListItem>
-            </TouchableOpacity>
-        );
-        }}
-    />
-*/
+export default TrackListScreen; 
