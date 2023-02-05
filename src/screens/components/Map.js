@@ -1,11 +1,10 @@
 import React, {useContext} from "react"; 
-import {Text, StyleSheet, ActivityIndicator} from 'react-native';
-import { exp } from "react-native-reanimated";
+import { StyleSheet, ActivityIndicator } from 'react-native';
 import MapView, {Polyline, Circle} from "react-native-maps";
 import {Context as LocationContext} from '../context/LocationContext'
 
 const Map = () => {
-    const {state: { currentLocation, locations}} = useContext(LocationContext)
+    const {state: { currentLocation, locations}} = useContext(LocationContext);
 
     if (!currentLocation) {
         return <ActivityIndicator size="large" style={{marginTop: 200}} />
@@ -13,11 +12,11 @@ const Map = () => {
 
     return (
     <MapView  
-    style={styles.map}
-    initialRegion={{
-        ...currentLocation.coords,
-        latitudeDelta:0.01,
-        longitudeDelta: 0.01
+        style={styles.map}
+        initialRegion={{
+            ...currentLocation.coords,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
     }}
     region= {{
         ...currentLocation.coords,
